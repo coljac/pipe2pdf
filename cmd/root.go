@@ -256,14 +256,10 @@ func createPDF(inputFiles []string, title string, paper string, fontSize float64
 
 func addFont(pdf *fpdf.Fpdf, font string) error {
 	switch font {
-	case "Courier":
-		pdf.AddFont("Courier", "", "courier.json")
-	case "Helvetica":
-		pdf.AddFont("Helvetica", "", "helvetica_1.json")
-	case "Arial":
-		pdf.AddFont("Arial", "", "arial_1.json")
+	case "Courier", "Helvetica", "Arial":
+		// These are built-in fonts, no need to add them
+		return nil
 	default:
 		return fmt.Errorf("unsupported font: %s", font)
 	}
-	return nil
 }
